@@ -44,7 +44,7 @@ const Insights = () => {
         totalFailCalls: "Total Failed Calls"
     };
 
-    const cityCounts = calls.reduce((acc, call) => {
+    const cityCosts = calls.reduce((acc, call) => {
       const city = call.city;
 
       acc[city] = (acc[city] || 0) + Number(call.callCost);
@@ -52,20 +52,20 @@ const Insights = () => {
       return acc;
     }, {});
 
-    const barChartData = Object.entries(cityCounts).map(
+    const barChartData = Object.entries(cityCosts).map(
       ([city, total]) => ({
         city: city,
         cost: total,
       })
     );
 
-      const hourCounts = calls.reduce((acc, call) => {
-        const hour = call.callStartTime.slice(11,13);
+    const hourCounts = calls.reduce((acc, call) => {
+      const hour = call.callStartTime.slice(11,13);
 
-        acc[hour] = (acc[hour] || 0) + 1;
+      acc[hour] = (acc[hour] || 0) + 1;
 
-        return acc;
-      }, {});
+      return acc;
+    }, {});
 
     const lineChartData = Object.entries(hourCounts)
       .sort(([hourA], [hourB]) => hourA.localeCompare(hourB))
@@ -74,7 +74,22 @@ const Insights = () => {
           hour: hour,
           calls: count,
         })
-      );
+    );
+
+    const cityCalls = calls.reduce((acc, call) => {
+      const city = call.city;
+
+      acc[city] = (acc[city] || 0) + 1;
+
+      return acc;
+    }, {});
+
+    const pieData = Object.entries(cityCalls).map(
+      ([city, total]) => ({
+        city: city,
+        count: total,
+      })
+    );
     
 
   return (
