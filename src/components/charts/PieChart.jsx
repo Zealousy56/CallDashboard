@@ -20,7 +20,7 @@ const CallPieChart = ({ data }) => {
     >
       <PieChart>
         <ChartTooltip
-          content={<ChartTooltipContent nameKey="count" />}
+          content={<ChartTooltipContent className = "bg-white opacity-100" nameKey = "count" />}
         />
 
         <Pie

@@ -9,10 +9,19 @@ const DurationDist = ({data}) => {
                 <Plot
                     data={[
                         {
-                        x: data,
-                        type: "box",
-                        name: "Call Duration",
-                        boxpoints: "outliers",
+                            x: data,
+                            type: "box",
+                            name: "Call Duration",
+                            boxpoints: "outliers",
+
+                            fillcolor: "rgba(0, 255, 247, 0.43)",
+                            line: {
+                                color: "#00fcf8",
+                                width: 2,
+                            },
+                            marker: {
+                                color: "#2563eb",
+                            },
                         },
                     ]}
                     layout={{

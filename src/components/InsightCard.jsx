@@ -5,12 +5,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const InsightCard = ({ title, children }) => {
+const InsightCard = ({ title, titleSize = "text-xl", children }) => {
 
   return (
-    <Card>
+    <Card className = "border-1 border-[#d3d3d3] ring-0 shadow-[1px_1px_3px_rgba(0,0,0,0.1)]">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className = {titleSize}>{title}</CardTitle>
       </CardHeader>
 
       <CardContent>

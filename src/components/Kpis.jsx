@@ -7,8 +7,8 @@ const Kpis = ({ stats, titles }) => {
             <div className = "col-span-2 grid grid-cols-3">
                 {Object.keys(stats).map((key) => (
                     <div className = "p-2">
-                        <InsightCard className = "p-20" key={key} title={titles[key] ?? key}>
-                            <p>{stats[key]}</p>
+                        <InsightCard className = "p-20" key={key} title={titles[key] ?? key} titleSize = "text-sm">
+                            <p className = "pb-2 text-3xl font-semibold">{stats[key]}</p>
                         </InsightCard>
                     </div>
                 ))}

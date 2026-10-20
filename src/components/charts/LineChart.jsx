@@ -1,9 +1,9 @@
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import {
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartConfig = {
@@ -25,7 +25,7 @@ const CallLineChart = ({ data }) => {
         <XAxis dataKey="hour" />
         <YAxis allowDecimals={false} />
 
-        <ChartTooltip content={<ChartTooltipContent />} />
+        <ChartTooltip content={<ChartTooltipContent className = "bg-white opacity-100" />} />
 
         <Line
             type="monotone"

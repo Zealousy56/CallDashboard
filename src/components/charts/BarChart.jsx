@@ -1,9 +1,9 @@
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartConfig = {
@@ -25,7 +25,7 @@ const CallBarChart = ({ data }) => {
         <XAxis dataKey="city" />
         <YAxis allowDecimals={true} />
 
-        <ChartTooltip content={<ChartTooltipContent />} />
+        <ChartTooltip content={<ChartTooltipContent className = "bg-white opacity-100" />} />
 
         <Bar
           dataKey="cost"
