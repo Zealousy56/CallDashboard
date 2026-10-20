@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCalls } from "../services/api.jsx";
+import CostAnalytics from "./CostAnalytics.jsx";
+import HourAnalytics from "./HourAnalytics.jsx";
 import Kpis from "./Kpis.jsx";
 
 
@@ -42,6 +44,39 @@ const Insights = () => {
         totalFailCalls: "Total Failed Calls"
     };
 
+    const cityCounts = calls.reduce((acc, call) => {
+      const city = call.city;
+
+      acc[city] = (acc[city] || 0) + Number(call.callCost);
+
+      return acc;
+    }, {});
+
+    const barChartData = Object.entries(cityCounts).map(
+      ([city, total]) => ({
+        city: city,
+        cost: total,
+      })
+    );
+
+      const hourCounts = calls.reduce((acc, call) => {
+        const hour = call.callStartTime.slice(11,13);
+
+        acc[hour] = (acc[hour] || 0) + 1;
+
+        return acc;
+      }, {});
+
+    const lineChartData = Object.entries(hourCounts)
+      .sort(([hourA], [hourB]) => hourA.localeCompare(hourB))
+      .map(
+        ([hour, count]) => ({
+          hour: hour,
+          calls: count,
+        })
+      );
+    
+
   return (
     <div className = "flex-1 p-6 grid grid-cols-4">
         {loading && <p>Loading calls...</p>}
@@ -49,8 +84,12 @@ const Insights = () => {
         {!loading && !error && calls.length === 0 && <p>No calls found.</p>}
 
         {
-          !loading && !error && calls.length > 0 &&
-          <Kpis stats = {stats} titles = {statTitles}/>
+          !loading && !error && calls.length > 0 && 
+          <>
+            <Kpis stats = {stats} titles = {statTitles}/>
+            <CostAnalytics data = {barChartData} /> 
+            <HourAnalytics data = {lineChartData} />
+          </>
         }
     </div>
   );
