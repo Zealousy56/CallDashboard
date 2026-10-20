@@ -3,6 +3,7 @@ import { getCalls } from "../services/api.jsx";
 import CallsPerCity from "./CallsPerCity.jsx";
 import CallsPerHour from "./CallsPerHour.jsx";
 import CostsPerCity from "./CostsPerCity.jsx";
+import DurationDist from "./DurationDist.jsx";
 import Kpis from "./Kpis.jsx";
 import RecentCalls from "./RecentCalls.jsx";
 
@@ -88,12 +89,12 @@ const Insights = () => {
     }, {});
 
     const colors = [
-      "#2563eb",
-      "#f97316",
-      "#22c55e",
+      "#ff1a79",
+      "#16f9db",
+      "#ff9b53",
       "#a855f7",
       "#ef4444",
-      "#eab308",
+      "#ffef84",
     ];
 
     const pieChartData = Object.entries(cityCalls).map(
@@ -104,6 +105,7 @@ const Insights = () => {
       })
     );
     
+    const durations = calls.map(call => Number(call.callDuration));
 
   return (
     <div className = "flex-1 p-6 grid grid-cols-4">
@@ -116,6 +118,7 @@ const Insights = () => {
           <>
             <Kpis stats = {stats} titles = {statTitles}/>
             <CallsPerCity data = {pieChartData} />
+            <DurationDist data = {durations} />
             <CostsPerCity data = {barChartData} /> 
             <CallsPerHour data = {lineChartData} />
             <RecentCalls calls = {calls} />

@@ -1,9 +1,9 @@
 import { Legend, Pie, PieChart } from "recharts";
 
 import {
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartConfig = {
@@ -16,7 +16,7 @@ const CallPieChart = ({ data }) => {
   return (
     <ChartContainer
       config={chartConfig}
-      className="h-[600px] w-full"
+      className="h-200 w-full"
     >
       <PieChart>
         <ChartTooltip
@@ -28,7 +28,7 @@ const CallPieChart = ({ data }) => {
           dataKey="calls"
           nameKey="city"
           innerRadius={0}
-          outerRadius={100}
+          outerRadius={220}
           label
         />
 
