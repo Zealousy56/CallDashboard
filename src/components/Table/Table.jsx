@@ -12,7 +12,8 @@ const CallsTable = ({ calls }) => {
     (a, b) =>
       new Date(b.callStartTime).getTime() -
       new Date(a.callStartTime).getTime()
-  );
+  )
+  .slice(0,5);
 
   return (
     <Table>
@@ -36,7 +37,7 @@ const CallsTable = ({ calls }) => {
             <TableCell>{call.receiverNumber}</TableCell>
             <TableCell>{call.city}</TableCell>
             <TableCell>{call.callDuration}s</TableCell>
-            <TableCell>£{Number(call.callCost).toFixed(2)}</TableCell>
+            <TableCell>£{(Number(call.callCost)/100).toFixed(2)}</TableCell>
             <TableCell>{new Date(call.callStartTime).toLocaleString("en-GB")}</TableCell>
           </TableRow>
         ))}

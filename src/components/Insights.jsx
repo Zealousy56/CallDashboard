@@ -118,7 +118,7 @@ const Insights = () => {
             <CallsPerCity data = {pieChartData} />
             <CostsPerCity data = {barChartData} /> 
             <CallsPerHour data = {lineChartData} />
-            <RecentCalls data = {calls} />
+            <RecentCalls calls = {calls} />
           </>
         }
     </div>
