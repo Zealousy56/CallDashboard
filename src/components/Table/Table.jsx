@@ -1,10 +1,10 @@
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 
 const CallsTable = ({ calls }) => {
@@ -13,7 +13,7 @@ const CallsTable = ({ calls }) => {
       new Date(b.callStartTime).getTime() -
       new Date(a.callStartTime).getTime()
   )
-  .slice(0,5);
+  .slice(0,4);
 
   return (
     <Table>
