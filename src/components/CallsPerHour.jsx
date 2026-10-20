@@ -1,7 +1,7 @@
 import CallLineChart from "./charts/LineChart";
 import InsightCard from "./InsightCard.jsx";
 
-const HourAnalytics = ({data}) => {
+const CallsPerHour = ({data}) => {
     return(
         <>
         <div className = "p-2 col-span-2">
@@ -13,4 +13,4 @@ const HourAnalytics = ({data}) => {
     );
 }
 
-export default HourAnalytics
+export default CallsPerHour

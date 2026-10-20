@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCalls } from "../services/api.jsx";
-import CostAnalytics from "./CostAnalytics.jsx";
-import HourAnalytics from "./HourAnalytics.jsx";
+import CallsPerHour from "./CallsPerHour.jsx";
+import CostsPerCity from "./CostsPerCity.jsx";
 import Kpis from "./Kpis.jsx";
 
 
@@ -87,8 +87,8 @@ const Insights = () => {
           !loading && !error && calls.length > 0 && 
           <>
             <Kpis stats = {stats} titles = {statTitles}/>
-            <CostAnalytics data = {barChartData} /> 
-            <HourAnalytics data = {lineChartData} />
+            <CostsPerCity data = {barChartData} /> 
+            <CallsPerHour data = {lineChartData} />
           </>
         }
     </div>
