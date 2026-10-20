@@ -16,7 +16,7 @@ const CallPieChart = ({ data }) => {
   return (
     <ChartContainer
       config={chartConfig}
-      className="h-[300px] w-full"
+      className="h-[600px] w-full"
     >
       <PieChart>
         <ChartTooltip
@@ -25,9 +25,9 @@ const CallPieChart = ({ data }) => {
 
         <Pie
           data={data}
-          dataKey="city"
-          nameKey="count"
-          innerRadius={60}
+          dataKey="calls"
+          nameKey="city"
+          innerRadius={0}
           outerRadius={100}
           label
         />

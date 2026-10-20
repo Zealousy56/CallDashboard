@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCalls } from "../services/api.jsx";
+import CallsPerCity from "./CallsPerCity.jsx";
 import CallsPerHour from "./CallsPerHour.jsx";
 import CostsPerCity from "./CostsPerCity.jsx";
 import Kpis from "./Kpis.jsx";
@@ -84,10 +85,20 @@ const Insights = () => {
       return acc;
     }, {});
 
-    const pieData = Object.entries(cityCalls).map(
-      ([city, total]) => ({
-        city: city,
-        count: total,
+    const colors = [
+      "#2563eb",
+      "#f97316",
+      "#22c55e",
+      "#a855f7",
+      "#ef4444",
+      "#eab308",
+    ];
+
+    const pieChartData = Object.entries(cityCalls).map(
+      ([city, count], index) => ({
+        city,
+        calls: count,
+        fill: colors[index % colors.length],
       })
     );
     
@@ -102,6 +113,7 @@ const Insights = () => {
           !loading && !error && calls.length > 0 && 
           <>
             <Kpis stats = {stats} titles = {statTitles}/>
+            <CallsPerCity data = {pieChartData} />
             <CostsPerCity data = {barChartData} /> 
             <CallsPerHour data = {lineChartData} />
           </>

@@ -1,7 +1,15 @@
+import InsightCard from "./InsightCard";
+import CallPieChart from "./charts/PieChart";
 
-const CallsPerCity = () => {
-  return (
-    <div>CallsPerCity</div>
+const CallsPerCity = ({data}) => {
+  return(
+    <>
+        <div className = "p-2 col-span-2 row-span-3">
+            <InsightCard className = "p-20" title= "Calls per City">
+                <CallPieChart data = {data} />
+            </InsightCard>
+        </div>
+    </>
   )
 }
 
