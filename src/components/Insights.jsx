@@ -4,6 +4,8 @@ import CallsPerCity from "./CallsPerCity.jsx";
 import CallsPerHour from "./CallsPerHour.jsx";
 import CostsPerCity from "./CostsPerCity.jsx";
 import Kpis from "./Kpis.jsx";
+import RecentCalls from "./RecentCalls.jsx";
+
 
 
 
@@ -116,6 +118,7 @@ const Insights = () => {
             <CallsPerCity data = {pieChartData} />
             <CostsPerCity data = {barChartData} /> 
             <CallsPerHour data = {lineChartData} />
+            <RecentCalls data = {calls} />
           </>
         }
     </div>
