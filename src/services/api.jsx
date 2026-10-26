@@ -1,6 +1,6 @@
 export async function getCalls() {
   const response = await fetch(
-    "https://69b30b45e224ec066bdb55a0.mockapi.io/api/v1/cdr"
+    "${import.meta.env.API_URL}/api/calls"
   );
 
   if (!response.ok) {
