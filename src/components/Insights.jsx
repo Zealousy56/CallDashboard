@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCalls } from "../services/api.jsx";
+import { getInsights } from "../services/api.jsx";
 import CallsPerCity from "./CallsPerCity.jsx";
 import CallsPerHour from "./CallsPerHour.jsx";
 import CostsPerCity from "./CostsPerCity.jsx";
@@ -13,9 +13,9 @@ const Insights = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchCalls() {
+    async function fetchInsights() {
       try {
-        const data = await getCalls();
+        const data = await getInsights();
         setInsights(data);
       } catch (error) {
         setError(error instanceof Error ? error.message : String(error));
@@ -24,7 +24,7 @@ const Insights = () => {
       }
     }
 
-    fetchCalls();
+    fetchInsights();
   }, []);
 
   const stats = {
