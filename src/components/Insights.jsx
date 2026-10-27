@@ -31,8 +31,8 @@ const Insights = () => {
     totalCalls: insights.totalCalls,
     totalCost: insights.totalCost,
     averageDuration: insights.averageDuration,
-    totalSuccCalls: insights.successfulCalls,
-    totalFailCalls: insights.failedCalls
+    successfulCalls: insights.successfulCalls,
+    failedCalls: insights.failedCalls
   };
 
   const statTitles = {

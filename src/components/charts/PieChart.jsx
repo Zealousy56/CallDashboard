@@ -1,4 +1,4 @@
-import { Legend, Pie, PieChart } from "recharts";
+import { Cell, Pie, PieChart } from "recharts";
 
 import {
   ChartContainer,
@@ -10,18 +10,24 @@ const chartConfig = {
   calls: {
     label: "Calls",
   },
-}
-
-const colors = [
+  colors: [
       "#ff1a79",
       "#16f9db",
       "#ff9b53",
       "#a855f7",
       "#ef4444",
       "#ffef84",
-    ];
+  ]
+}
+
 
 const CallPieChart = ({ data }) => {
+  const chartData = data.map((entry, index) => ({
+    ...entry,
+    fill: chartConfig.colors[index % chartConfig.colors.length],
+  }));
+
+
   return (
     <ChartContainer
       config={chartConfig}
@@ -33,15 +39,21 @@ const CallPieChart = ({ data }) => {
         />
 
         <Pie
-          data={data}
-          dataKey="calls"
+          data={chartData}
+          dataKey="count"
           nameKey="city"
           innerRadius={0}
           outerRadius={220}
           label
         />
 
-        <Legend />
+        {data.map((entry, index) => (
+          <Cell
+            key={entry.city}
+            fill={chartConfig.colors[index % chartConfig.colors.length]}
+          />
+        ))}
+
       </PieChart>
     </ChartContainer>
   );

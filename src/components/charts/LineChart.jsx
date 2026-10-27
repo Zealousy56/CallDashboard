@@ -29,7 +29,7 @@ const CallLineChart = ({ data }) => {
 
         <Line
             type="monotone"
-            dataKey="calls"
+            dataKey="count"
             stroke="#00ffc8"
             strokeWidth={2}
             dot={{
