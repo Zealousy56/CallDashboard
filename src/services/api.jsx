@@ -20,3 +20,20 @@ export async function getInsights(token) {
 
   return data;
 }
+
+export async function getRecentCalls(page, size, token) {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/calls/recent?page=${page}&size=${size}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch calls (${response.status})`);
+  }
+
+  return response.json();
+}

@@ -60,7 +60,7 @@ const Insights = () => {
             <DurationDist data = {insights.durations} />
             <CostsPerCity data = {insights.cityCosts} /> 
             <CallsPerHour data = {insights.hourlyCalls} />
-            <RecentCalls calls = {insights.recentCalls} />
+            <RecentCalls />
           </>
         }
     </div>
