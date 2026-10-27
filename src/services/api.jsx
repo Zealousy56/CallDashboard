@@ -7,10 +7,11 @@ export async function getCalls() {
     throw new Error(`Failed to fetch calls (${response.status})`);
   }
 
-  const calls = await response.json();
-  if (!Array.isArray(calls)) {
-    throw new Error("The calls API returned an unexpected response");
+  const data = await response.json();
+
+  if (data === null || typeof data !== "object" || Array.isArray(data)) {
+      throw new Error("The insights API returned an unexpected response");
   }
 
-  return calls;
+  return data;
 }
