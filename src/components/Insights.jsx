@@ -7,11 +7,8 @@ import DurationDist from "./DurationDist.jsx";
 import Kpis from "./Kpis.jsx";
 import RecentCalls from "./RecentCalls.jsx";
 
-
-
-
 const Insights = () => {
-  const [calls, setCalls] = useState([]);
+  const [insights, setInsights] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,7 +16,7 @@ const Insights = () => {
     async function fetchCalls() {
       try {
         const data = await getCalls();
-        setCalls(data);
+        setInsights(data);
       } catch (error) {
         setError(error instanceof Error ? error.message : String(error));
       } finally {
@@ -30,98 +27,37 @@ const Insights = () => {
     fetchCalls();
   }, []);
 
-    const stats = {
-    totalCalls: calls.length,
-    totalCost: (calls.reduce((sum, call) => sum + Number(call.callCost), 0)).toFixed(2),
-    averageDuration: calls.length
-        ? calls.reduce((sum, call) => sum + call.callDuration, 0) / calls.length
-        : 0, 
-    totalSuccCalls: calls.reduce((sum, call) => call.callStatus ? sum + 1 : sum, 0),
-    totalFailCalls: calls.reduce((sum, call) => !call.callStatus ? sum + 1 : sum, 0)   
-    };
+  const stats = {
+    totalCalls: insights.totalCalls,
+    totalCost: insights.totalCost,
+    averageDuration: insights.averageDuration,
+    totalSuccCalls: insights.successfulCalls,
+    totalFailCalls: insights.failedCalls
+  };
 
-    const statTitles = {
-        totalCalls: "Total Calls",
-        totalCost: "Total Call Costs",
-        averageDuration: "Average Call Duration",
-        totalSuccCalls: "Total Successful Calls",
-        totalFailCalls: "Total Failed Calls"
-    };
-
-    const cityCosts = calls.reduce((acc, call) => {
-      const city = call.city;
-
-      acc[city] = (acc[city] || 0) + Number(call.callCost);
-
-      return acc;
-    }, {});
-
-    const barChartData = Object.entries(cityCosts).map(
-      ([city, total]) => ({
-        city: city,
-        cost: total,
-      })
-    );
-
-    const hourCounts = calls.reduce((acc, call) => {
-      const hour = call.callStartTime.slice(11,13);
-
-      acc[hour] = (acc[hour] || 0) + 1;
-
-      return acc;
-    }, {});
-
-    const lineChartData = Object.entries(hourCounts)
-      .sort(([hourA], [hourB]) => hourA.localeCompare(hourB))
-      .map(
-        ([hour, count]) => ({
-          hour: hour,
-          calls: count,
-        })
-    );
-
-    const cityCalls = calls.reduce((acc, call) => {
-      const city = call.city;
-
-      acc[city] = (acc[city] || 0) + 1;
-
-      return acc;
-    }, {});
-
-    const colors = [
-      "#ff1a79",
-      "#16f9db",
-      "#ff9b53",
-      "#a855f7",
-      "#ef4444",
-      "#ffef84",
-    ];
-
-    const pieChartData = Object.entries(cityCalls).map(
-      ([city, count], index) => ({
-        city,
-        calls: count,
-        fill: colors[index % colors.length],
-      })
-    );
-    
-    const durations = calls.map(call => Number(call.callDuration));
+  const statTitles = {
+      totalCalls: "Total Calls",
+      totalCost: "Total Call Costs",
+      averageDuration: "Average Call Duration",
+      totalSuccCalls: "Total Successful Calls",
+      totalFailCalls: "Total Failed Calls"
+  };
 
   return (
     <div className = "flex-1 p-6 grid grid-cols-4">
         {loading && <p>Loading calls...</p>}
         {error && <p>Error loading calls: {error}</p>}
-        {!loading && !error && calls.length === 0 && <p>No calls found.</p>}
+        {!loading && !error && insights.totalCalls === 0 && <p>No calls found.</p>}
 
         {
-          !loading && !error && calls.length > 0 && 
+          !loading && !error && insights.totalCalls > 0 && 
           <>
             <Kpis stats = {stats} titles = {statTitles}/>
-            <CallsPerCity data = {pieChartData} />
-            <DurationDist data = {durations} />
-            <CostsPerCity data = {barChartData} /> 
-            <CallsPerHour data = {lineChartData} />
-            <RecentCalls calls = {calls} />
+            <CallsPerCity data = {insights.cityCalls} />
+            <DurationDist data = {insights.durations} />
+            <CostsPerCity data = {insights.cityCosts} /> 
+            <CallsPerHour data = {insights.hourlyCalls} />
+            <RecentCalls calls = {insights.recentCalls} />
           </>
         }
     </div>

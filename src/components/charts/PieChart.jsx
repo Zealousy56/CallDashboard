@@ -12,6 +12,15 @@ const chartConfig = {
   },
 }
 
+const colors = [
+      "#ff1a79",
+      "#16f9db",
+      "#ff9b53",
+      "#a855f7",
+      "#ef4444",
+      "#ffef84",
+    ];
+
 const CallPieChart = ({ data }) => {
   return (
     <ChartContainer

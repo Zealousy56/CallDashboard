@@ -1,6 +1,6 @@
 export async function getCalls() {
   const response = await fetch(
-    "${import.meta.env.API_URL}/api/calls"
+    "${import.meta.env.API_URL}/api/calls/insights"
   );
 
   if (!response.ok) {
