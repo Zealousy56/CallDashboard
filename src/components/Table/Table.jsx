@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/table";
 
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/useAuth";
-import { getRecentCalls } from "../services/apis";
+import { useAuth } from "../../context/useAuth";
+import { getRecentCalls } from "../../services/api";
 
 const CallsTable = () => {
     const { token } = useAuth();
