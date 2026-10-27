@@ -1,6 +1,6 @@
 export async function getCalls() {
   const response = await fetch(
-    "${import.meta.env.VITE_API_URL}/api/calls/insights"
+    `${import.meta.env.VITE_API_URL}/api/calls/insights`
   );
 
   if (!response.ok) {
