@@ -1,6 +1,11 @@
-export async function getCalls() {
+export async function getInsights(token) {
   const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/api/calls/insights`
+    `${import.meta.env.VITE_API_URL}/api/calls/insights`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   if (!response.ok) {
