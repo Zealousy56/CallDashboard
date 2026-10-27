@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getInsights } from "../services/api.jsx";
+import { useAuth } from "../context/useAuth";
+import { getInsights } from "../services/api";
 import CallsPerCity from "./CallsPerCity.jsx";
 import CallsPerHour from "./CallsPerHour.jsx";
 import CostsPerCity from "./CostsPerCity.jsx";
@@ -12,10 +13,12 @@ const Insights = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { token } = useAuth();
+
   useEffect(() => {
     async function fetchInsights() {
       try {
-        const data = await getInsights();
+        const data = await getInsights(token);
         setInsights(data);
       } catch (error) {
         setError(error instanceof Error ? error.message : String(error));
@@ -25,7 +28,7 @@ const Insights = () => {
     }
 
     fetchInsights();
-  }, []);
+  }, [token]);
 
   const stats = {
     totalCalls: insights.totalCalls,
