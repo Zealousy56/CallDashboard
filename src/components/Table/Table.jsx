@@ -79,7 +79,7 @@ const CallsTable = () => {
               <TableCell>{call.city}</TableCell>
               <TableCell>{call.callDuration}s</TableCell>
               <TableCell>£{(Number(call.callCost)/100).toFixed(2)}</TableCell>
-              <TableCell>{new Date(call.callStartTime).toLocaleString("en-GB")}</TableCell>
+              <TableCell>{new Date(call.startTime).toLocaleString("en-GB")}</TableCell>
             </TableRow>
           ))}
         </TableBody>
